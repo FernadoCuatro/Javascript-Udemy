@@ -117,10 +117,7 @@ function leerDatosCurso(curso) {
         // los tres puntos significa que tomamos una copia del array existente
         articulosCarrito = [...articulosCarrito, infoCurso];
     }
-
-
-
-
+    
     // console.log(articulosCarrito);
 
     // mandamos a llamar la funcion para pintar el contenido
