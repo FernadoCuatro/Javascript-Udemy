@@ -7,6 +7,10 @@ const email   = document.querySelector('#email');
 const asunto  = document.querySelector('#asunto');
 const mensaje = document.querySelector('#mensaje');
 
+// expresion regular 
+// vamos a ir validando con una expresion regular 
+const er = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 eventListeners();
 function eventListeners() {
     // funcion que ejecutara lo que necesita el documento cuando 
@@ -58,9 +62,6 @@ function validarFormulario(e) {
         // console.log('Es email, hay que validarlo diferente.');
         // const resultado = e.target.value.indexOf('@'); // -1 signfica que no existe una arroba
         
-        // vamos a ir validando con una expresion regular 
-        const er = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
         if (er.test(e.target.value)) {
             // console.log('Email valido');
             const error = document.querySelector('p.error');
@@ -77,6 +78,15 @@ function validarFormulario(e) {
         }
     }
     
+    // validamos para habilitar boton de envio
+    if (er.test(email.value) && asunto.value !== '' && mensaje.value !== '') {
+        btnEnviar.disabled = false;
+        btnEnviar.classList.remove('cursor-not-allowed','opacity-50');
+    } else {
+        btnEnviar.disabled = true;
+        btnEnviar.classList.add('cursor-not-allowed','opacity-50');
+    }
+
 
 }
 
@@ -98,9 +108,4 @@ function mostrarError(mensaje) {
     if (errores.length === 0) {
         formulario.appendChild(mensajeError);
     }
-
-    
-
-
-
 }
