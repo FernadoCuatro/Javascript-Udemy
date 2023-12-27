@@ -1,5 +1,6 @@
 // variables
 const btnEnviar  = document.querySelector('#enviar');
+const btnReset   = document.querySelector('#resetBtn');
 const formulario = document.querySelector('#enviar-mail');
 
 // variables para campos
@@ -21,6 +22,16 @@ function eventListeners() {
     email.addEventListener('blur', validarFormulario);
     asunto.addEventListener('blur', validarFormulario);
     mensaje.addEventListener('blur', validarFormulario);
+
+    // reincia el formulario
+    btnReset.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        resetearFormulario();
+    });
+
+    // enviar email
+    formulario.addEventListener('submit', enviarEmail);
 }
 
 // funciones 
@@ -108,4 +119,42 @@ function mostrarError(mensaje) {
     if (errores.length === 0) {
         formulario.appendChild(mensajeError);
     }
+}
+
+
+/**
+ * funcion para enviar el email
+ */
+function enviarEmail(e) {
+    e.preventDefault(); // quitamos el evento por defecto
+    // console.log('Enviando');
+
+    // selector para el spinner para mostrarlo
+    const spinner = document.querySelector('#spinner');
+    spinner.style.display = 'flex';
+
+    // despues de tres segundos ocultar el spinner y mostrar el mensaje despues de 3 segundos
+    setTimeout(() => {
+        spinner.style.display = 'none';
+
+        // mensaje que dice que se envio correctamente
+        const parrafo = document.createElement('p');
+        parrafo.textContent = 'El mensaje se envio correctamente';
+        parrafo.classList.add('text-center', 'my-10', 'p-2', 'bg-green-500', 'text-white', 'bont-bold', 'uppercase');
+
+        // inserta el parrafo antes del spinner
+        formulario.insertBefore(parrafo, spinner);
+
+        setTimeout(() => {
+            parrafo.remove(); // eliminar el mensaje de éxito
+            resetearFormulario(); // reseteamos el formulario
+        }, 5000);
+
+    }, 3000);
+}
+
+function resetearFormulario() {
+    formulario.reset();
+
+    iniciarApp(); // iniciar app para que el boton se bloquee
 }
