@@ -28,7 +28,7 @@ const datosBusqueda = {
 // eventos
 document.addEventListener('DOMContentLoaded', () => {
     // una vez que se complete la carga la pagina, mostramos los autos
-    mostrarAutos();
+    mostrarAutos(autos);
 
     // llena las opciones de años
     llenarSelect();
@@ -72,7 +72,9 @@ color.addEventListener('change', e => {
 /**
  * muestra los datos recorriendo con un foreach
  */
-function mostrarAutos() {
+function mostrarAutos(autos) {
+    limpiarHTML();
+    
     // iteramos sobre autros, es decir sobre el archivo autos
     autos.forEach(auto => {
         const {marca, modelo, year, precio, puertas, color, transmision} = auto;
@@ -84,6 +86,8 @@ function mostrarAutos() {
         `;
 
         // insertar en el HTML
+        // appendChild no borra el contenido previo
+        // lo tenemos nosotros
         resultado.appendChild(autoHTML);
     });
 }
@@ -105,6 +109,15 @@ function llenarSelect() {
 
 
 /**
+ * funcion para limpiar html
+ */
+function limpiarHTML() {
+    while (resultado.firstChild) {
+        resultado.removeChild(resultado.firstChild);
+    }
+}
+
+/**
  * funcion que filtra autos en base a las busquedas
  */
 function filtrarAuto() {
@@ -113,7 +126,10 @@ function filtrarAuto() {
     // y lo hacemos con una funcion de alto nivel funciones que toman otra funcion
     const resultado = autos.filter(filtrarMarca).filter(filtrarYear);
     
-    console.log(resultado);
+    // console.log(resultado);
+    mostrarAutos(resultado);
+    
+
 }
 
 
