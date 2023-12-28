@@ -10,7 +10,6 @@ const color       = document.querySelector('#color');
 // contenedor para los resultados
 const resultado = document.querySelector('#resultado');
 
-
 const max = new Date().getFullYear(); // trae el anio actual
 const min = max - 10;
 
@@ -38,6 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
 // eventListener para los inputs de busqueda
 marca.addEventListener('change', e => {
     datosBusqueda.marca = e.target.value;
+
+    filtrarAuto();
 });
 
 year.addEventListener('change', e => {
@@ -98,4 +99,30 @@ function llenarSelect() {
         opcion.textContent = i;
         year.appendChild(opcion); // agrega las opciones de anio al select
     }
+}
+
+
+/**
+ * funcion que filtra autos en base a las busquedas
+ */
+function filtrarAuto() {
+    // filter es el mas dinamicos de todos '
+    // resultado nos va a generar un arreglo nuevo
+    // y lo hacemos con una funcion de alto nivel funciones que toman otra funcion
+    const resultado = autos.filter(filtrarMarca);
+    
+    console.log(resultado);
+}
+
+
+/**
+ * se encarga de iterar entre todos los objetos y filtra los autos
+ */
+function filtrarMarca(auto) {
+    const {marca} = datosBusqueda;
+    if (datosBusqueda.marca) {
+        return auto.marca === marca;
+    }
+
+    return auto;
 }
