@@ -1,7 +1,7 @@
 // variables
 const formualario = document.querySelector('#formulario');
 const listaTweets = document.querySelector('#lista-tweets');
-const tweests     = [];
+let tweests     = [];
 
 // eventos
 eventListeners();
@@ -38,6 +38,20 @@ function agregarTweet(e) {
         return; // evita que se ejecuten mas lineas de codigo
     }
     
+    // obj de objeto
+    const tweetObj = {
+        id   : Date.now(),
+        tweet
+    }
+
+    // adding el arreglo de tweets
+    tweests = [...tweests, tweetObj];
+
+    // una vez agregado, lo pintamos en el HTML
+    crearHTML();
+
+    // reiniciar el formulario
+    formualario.reset();
 }
 
 
@@ -59,4 +73,32 @@ function mostrarError(error) {
     setTimeout(() => {
         mensajeError.remove();
     }, 3000);
+}
+
+
+/**
+ * muestra el listado de los tweets
+ */
+function crearHTML() {
+    limpiarHTML()
+
+    if (tweests.length > 0) {
+        tweests.forEach(tweet => {
+            // crear el HTML
+            const li = document.createElement('li');
+
+            // adding el texto
+            li.innerText = tweet.tweet
+
+            // colocando el listado de tweets en el HTML
+            listaTweets.appendChild(li);
+        });
+    }
+}
+
+// limpiamos el HTML
+function limpiarHTML() {
+    while (listaTweets.firstChild) {
+        listaTweets.removeChild(listaTweets.firstChild);
+    }
 }
