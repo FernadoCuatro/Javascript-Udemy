@@ -51,6 +51,7 @@ ul {
 .submenu #carrito{
     display: none;
 }
+
 .submenu:hover #carrito{
     display: block;
     position: absolute;
@@ -61,7 +62,7 @@ ul {
     background-color: white;
     padding: 20px;
     min-height: 400px;
-    min-width: 300px;
+    min-width: 400px;
 }
 .vacio {
     padding: 10px;
