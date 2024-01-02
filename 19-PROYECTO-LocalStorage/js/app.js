@@ -1,7 +1,7 @@
 // variables
 const formualario = document.querySelector('#formulario');
 const listaTweets = document.querySelector('#lista-tweets');
-let tweests     = [];
+let tweests = [];
 
 // eventos
 eventListeners();
@@ -13,11 +13,28 @@ eventListeners();
  */
 function eventListeners() {
     // disparamos la funcion cuando le de submit al formumario
-    formualario.addEventListener('submit', agregarTweet); 
+    // cuando el usuario agrega un nuevo tweet
+    formualario.addEventListener('submit', agregarTweet);
 
+    // cuando el documento esta listo
+    document.addEventListener('DOMContentLoaded', () => {
+        tweests = JSON.parse(localStorage.getItem('tweets')) || [];
 
+        crearHTML();
+    });
+
+    // configuracion para cuando quiera guardar un dato desde el teclado
+    document.addEventListener('keydown', function (event) {
+        // verificar si la tecla presionada es 'S' y la tecla CTRL está presionada (o CMD en Mac)
+        if ((event.key === 's' || event.key === 'S') && (event.ctrlKey || event.metaKey)) {
+            // Prevenir el comportamiento predeterminado (como guardar la página)
+            event.preventDefault();
+
+            // llamamos a la funcion de guardar 
+            agregarTweet(event);
+        }
+    });
 }
-
 
 /**
  * funcion para agregar tw al LS
@@ -37,10 +54,10 @@ function agregarTweet(e) {
         // funciona si el if esta dentro de una funcion
         return; // evita que se ejecuten mas lineas de codigo
     }
-    
+
     // obj de objeto
     const tweetObj = {
-        id   : Date.now(),
+        id: Date.now(),
         tweet
     }
 
@@ -53,7 +70,6 @@ function agregarTweet(e) {
     // reiniciar el formulario
     formualario.reset();
 }
-
 
 /**
  * muestra mensaje de error
@@ -94,6 +110,16 @@ function crearHTML() {
             listaTweets.appendChild(li);
         });
     }
+
+    sincronizarStorege();
+}
+
+
+/**
+ * agrega los tweets actuales al localstorage
+ */
+function sincronizarStorege() {
+    localStorage.setItem('tweets', JSON.stringify(tweests));
 }
 
 // limpiamos el HTML
