@@ -100,11 +100,24 @@ function crearHTML() {
 
     if (tweests.length > 0) {
         tweests.forEach(tweet => {
+            // agregar un botonde eliminar
+            const btnEliminar = document.createElement('a');
+            btnEliminar.classList.add('borrar-tweet');
+            btnEliminar.innerText = 'x';
+
+            // adding delete funcion
+            btnEliminar.onclick = () => {
+                borrarTweet(tweet.id);
+            };
+
             // crear el HTML
             const li = document.createElement('li');
 
             // adding el texto
             li.innerText = tweet.tweet
+
+            // agregando el boton de eliminar
+            li.appendChild(btnEliminar);
 
             // colocando el listado de tweets en el HTML
             listaTweets.appendChild(li);
@@ -127,4 +140,16 @@ function limpiarHTML() {
     while (listaTweets.firstChild) {
         listaTweets.removeChild(listaTweets.firstChild);
     }
+}
+
+
+/**
+ * eliminar el tw
+ * @param {*} id del tw
+ */
+function borrarTweet(id) {
+    // con filter nos traemos todos los demas excepto el que el id es igual
+    tweests = tweests.filter(tweet => tweet.id !== id);
+
+    crearHTML();
 }
