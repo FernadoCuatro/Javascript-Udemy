@@ -11,4 +11,7 @@ valor = moment().startOf('day').fromNow();        // 21 hours ago
 
 valor = moment().format('LLLL', diaHoy); // Monday, January 1, 2024 8:49 PM
 
+valor = moment().add(3, 'days').calendar(); // como sumarle  a la fecha para algo que expire
+
+
 console.log(valor);
