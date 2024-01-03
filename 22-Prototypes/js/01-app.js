@@ -15,4 +15,4 @@ function Cliente(nombre, saldo) {
 }
 
 const ferb = new Cliente('Fernando', 500);
-
+console.log(ferb);
