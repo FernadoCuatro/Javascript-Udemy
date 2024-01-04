@@ -30,3 +30,7 @@ function formatearEmpresa(empresa) {
 }
 
 console.log(formatearEmpresa(CCJ));
+
+
+// siempre es importante la documentacion pero no todos los hacen 
+// se recomienda que se haga protoype para proyectos grandes
