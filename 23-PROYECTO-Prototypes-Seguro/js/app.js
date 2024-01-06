@@ -26,6 +26,27 @@ UI.prototype.llenarOpciones = () => {
     }
 }
 
+// muestra alertas en pantalla
+UI.prototype.mostrarMensaje = (mensaje, tipo) => {
+    const div = document.createElement('div');
+
+    if (tipo === 'error') {
+        div.classList.add('error');
+
+    } else {
+        div.classList.add('correcto');
+
+    }
+
+    div.classList.add('mensaje', 'mt-10');
+    div.textContent = mensaje;
+
+    // lo insertamos en el HTML
+
+}
+
+
+
 // instanciar UI
 const ui = new UI();
 
