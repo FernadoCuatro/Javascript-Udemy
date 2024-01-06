@@ -42,7 +42,15 @@ UI.prototype.mostrarMensaje = (mensaje, tipo) => {
     div.textContent = mensaje;
 
     // lo insertamos en el HTML
+    const formulario = document.querySelector('#cotizar-seguro');
+    // se inserta el nuevo nodo
+    // y el nodo de referncia donde quieres insertarlo 
+    // eso con el insertBefore
+    formulario.insertBefore(div, document.querySelector('#resultado'));
 
+    setTimeout(() => {
+        div.remove();
+    }, 3000);
 }
 
 
@@ -75,9 +83,11 @@ function cotizarSeguro(e) {
     // console.log(tipo);
 
     if (marca === '' || year === '' || tipo === '') {
-        console.log('no paso la validacion');
-    } else {
-        console.log('SIUUUUUUUUUUUU');
-    }
+        // console.log('no paso la validacion');
+        ui.mostrarMensaje('Valida todo los campos', 'error');
+        // cortamos el flujo del codigo
+        return;
+    } 
 
+    ui.mostrarMensaje('Cotizando, por favor espere', 'exito');
 }
