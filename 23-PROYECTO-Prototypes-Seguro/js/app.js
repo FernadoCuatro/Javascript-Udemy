@@ -90,4 +90,7 @@ function cotizarSeguro(e) {
     } 
 
     ui.mostrarMensaje('Cotizando, por favor espere', 'exito');
+
+
+    
 }
