@@ -6,7 +6,7 @@ const gastosListado = document.querySelector('#gastos ul');
 eventListeners();
 function eventListeners() {
     document.addEventListener('DOMContentLoaded', preguntarPresupuesto);
-    // formulario.addEventListener('submit', agregarGasto);
+    formulario.addEventListener('submit', agregarGasto);
     // gastosListado.addEventListener('click', eliminarGasto);
 }
 
@@ -43,28 +43,32 @@ class UI {
         document.querySelector('#restante').textContent = cantidad.restante;
     }
     
-    // imprimirAlerta(mensaje, tipo) {
-    //     // Crea el div
-    //     const divMensaje = document.createElement('div');
-    //     divMensaje.classList.add('text-center', 'alert');
+    // metodo reutilizable para imprimir alerta
+    imprimirAlerta(mensaje, tipo) {
+        // Crea el div
+        const divMensaje = document.createElement('div');
+        divMensaje.classList.add('text-center', 'alert');
 
-    //     // Si es de tipo error agrega una clase
-    //     if(tipo === 'error') {
-    //         divMensaje.classList.add('alert-danger');
-    //     } else {
-    //         divMensaje.classList.add('alert-success');
-    //     }
-    //     // Mensaje de error
-    //     divMensaje.textContent = mensaje;
+        // Si es de tipo error agrega una clase
+        if(tipo === 'error') {
+            divMensaje.classList.add('alert-danger');
+        } else {
+            divMensaje.classList.add('alert-success');
+        }
 
-    //     // Insertar en el DOM
-    //     document.querySelector('.primario').insertBefore(divMensaje, formulario);
+        // Mensaje de error
+        divMensaje.textContent = mensaje;
 
-    //     // Quitar el alert despues de 3 segundos
-    //     setTimeout( () => {
-    //             document.querySelector('.primario .alert').remove();
-    //     }, 3000);
-    // }
+        // Insertar en el DOM
+        // insertBefore toma dos elementos, el primero que vamos a insertar
+        // y el segundo en que parte lo vamos a colocar
+        document.querySelector('.primario').insertBefore(divMensaje, formulario);
+
+        // Quitar el alert despues de 3 segundos
+        setTimeout( () => {
+                document.querySelector('.primario .alert').remove();
+        }, 2000);
+    }
 
     // Inserta los gastos a la lista 
 //     agregarGastoListado(gastos) {
@@ -84,7 +88,7 @@ class UI {
 //             // Insertar el gasto
 //             nuevoGasto.innerHTML = `
 //                 ${nombre}
-//                 <span class="badge badge-primary badge-pill">$ ${cantidad}</span>
+//                 <span class='badge badge-primary badge-pill'>$ ${cantidad}</span>
 //             `;
 
 //             // boton borrar gasto.
@@ -126,7 +130,7 @@ class UI {
     //     // Si presupuesta es igual a 0 
     //     if(restante <= 0 ) {
     //         ui.imprimirAlerta('El presupuesto se ha agotado', 'error');
-    //         formulario.querySelector('button[type="submit"]').disabled = true;
+    //         formulario.querySelector('button[type='submit']').disabled = true;
     //     } 
     // }
 
@@ -158,4 +162,52 @@ function preguntarPresupuesto() {
 
     // Agregarlo en el HTML
     ui.insertarPresupuesto(presupuesto)
+}
+
+// funcion que añade un gasto
+function agregarGasto(e) {
+    // Como es un submit le quitamos la funcion por default
+    e.preventDefault();
+
+    // Leer del formulario de Gastos
+    const nombre   = document.querySelector('#gasto').value;
+    const cantidad = Number(document.querySelector('#cantidad').value);
+
+    // 1 Comprobar que los campos no esten vacios
+    if (nombre === '' || cantidad === '') {
+        // 2 parametros: mensaje y tipo
+        // console.log('Ambos campos son obligatorios');
+        ui.imprimirAlerta('Ambos campos son obligatorios', 'error');
+        return;
+        
+    } else if (cantidad <= 0 || isNaN(cantidad)) {
+        // si hay una cantidad negativa o letras.
+        ui.imprimirAlerta('Cantidad no válida', 'error');
+        return;
+
+    }
+
+    const gasto = { nombre, cantidad, id: Date.now() };
+
+    // Añadir nuevo gasto
+    presupuesto.nuevoGasto(gasto);
+
+    // Insertar en el HTML
+    ui.imprimirAlerta('Correcto', 'correcto');
+
+    // Pasa los gastos para que se impriman...
+    const { gastos } = presupuesto;
+    ui.agregarGastoListado(gastos);
+
+    // Cambiar la clase que nos avisa si se va terminando
+    ui.comprobarPresupuesto(presupuesto);
+
+    // Actualiza el presupuesto restante
+    const { restante } = presupuesto;
+
+    // Actualizar cuanto nos queda
+    ui.actualizarRestante(restante);
+
+    // Reiniciar el form
+    formulario.reset();
 }
