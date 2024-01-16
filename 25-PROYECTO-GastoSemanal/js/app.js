@@ -20,10 +20,12 @@ class Presupuesto {
         this.gastos      = []; // para ir agregando los gastos poco a poco
     }
 
-    // nuevoGasto(gasto) {
-    //     this.gastos = [...this.gastos, gasto];
-    //     this.calcularRestante();
-    // }
+    nuevoGasto(gasto) {
+        // console.log(gasto);
+        this.gastos = [...this.gastos, gasto];
+        console.log(this.gastos);
+        // this.calcularRestante();
+    }
 
     // eliminarGasto(id) {
     //     this.gastos = this.gastos.filter( gasto => gasto.id.toString() !== id );
@@ -187,26 +189,30 @@ function agregarGasto(e) {
 
     }
 
+    // genera un objeto con el gasto 
+    // con el contrario del distroction
+    // se le conoce como object literal
     const gasto = { nombre, cantidad, id: Date.now() };
+    // console.log(gasto);
 
     // Añadir nuevo gasto
     presupuesto.nuevoGasto(gasto);
 
-    // Insertar en el HTML
-    ui.imprimirAlerta('Correcto', 'correcto');
+    // Insertar en el HTML la alerta de correcto
+    ui.imprimirAlerta('Gasto agregado correctamente');
 
-    // Pasa los gastos para que se impriman...
-    const { gastos } = presupuesto;
-    ui.agregarGastoListado(gastos);
+    // // Pasa los gastos para que se impriman
+    // const { gastos } = presupuesto;
+    // ui.agregarGastoListado(gastos);
 
-    // Cambiar la clase que nos avisa si se va terminando
-    ui.comprobarPresupuesto(presupuesto);
+    // // Cambiar la clase que nos avisa si se va terminando
+    // ui.comprobarPresupuesto(presupuesto);
 
-    // Actualiza el presupuesto restante
-    const { restante } = presupuesto;
+    // // Actualiza el presupuesto restante
+    // const { restante } = presupuesto;
 
-    // Actualizar cuanto nos queda
-    ui.actualizarRestante(restante);
+    // // Actualizar cuanto nos queda
+    // ui.actualizarRestante(restante);
 
     // Reiniciar el form
     formulario.reset();
