@@ -181,12 +181,10 @@ function agregarGasto(e) {
         // console.log('Ambos campos son obligatorios');
         ui.imprimirAlerta('Ambos campos son obligatorios', 'error');
         return;
-        
     } else if (cantidad <= 0 || isNaN(cantidad)) {
         // si hay una cantidad negativa o letras.
         ui.imprimirAlerta('Cantidad no válida', 'error');
         return;
-
     }
 
     // genera un objeto con el gasto 
