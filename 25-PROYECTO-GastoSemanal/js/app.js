@@ -24,7 +24,7 @@ class Presupuesto {
         // console.log(gasto);
         this.gastos = [...this.gastos, gasto];
         // console.log(this.gastos);
-        // this.calcularRestante();
+        this.calcularRestante();
     }
 
     // eliminarGasto(id) {
@@ -32,10 +32,13 @@ class Presupuesto {
     //     this.calcularRestante();
     // }
 
-    // calcularRestante() {
-    //     const gastado = this.gastos.reduce((total, gasto) => total + gasto.cantidad, 0);
-    //     this.restante = this.presupuesto - gastado;
-    // }
+    calcularRestante() {
+        // reduce toma dos argumentos, el primero es el total luego el objeto 
+        // reduce intera sobre todo el arreglo y nos entrega un gran total
+        const gastado = this.gastos.reduce((total, gasto) => total + gasto.cantidad, 0);
+        this.restante = this.presupuesto - gastado;
+        // console.log(this.restante);
+    }
 }
 
 class UI {
@@ -105,9 +108,9 @@ class UI {
     }
 
      // Comprueba el presupuesto restante
-    // actualizarRestante(restante) {
-    //     document.querySelector('span#restante').textContent = restante; 
-    // }
+    actualizarRestante(restante) {
+        document.querySelector('span#restante').textContent = restante; 
+    }
 
      // Cambia de color el presupuesto restante
     //  comprobarPresupuesto(presupuestoObj) {
@@ -207,11 +210,11 @@ function agregarGasto(e) {
     // // Cambiar la clase que nos avisa si se va terminando
     // ui.comprobarPresupuesto(presupuesto);
 
-    // // Actualiza el presupuesto restante
-    // const { restante } = presupuesto;
+    // Actualiza el presupuesto restante
+    const { restante } = presupuesto;
 
-    // // Actualizar cuanto nos queda
-    // ui.actualizarRestante(restante);
+    // Actualizar cuanto nos queda
+    ui.actualizarRestante(restante);
 
     // Reiniciar el form
     formulario.reset();
