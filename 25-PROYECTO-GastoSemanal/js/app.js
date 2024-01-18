@@ -23,7 +23,7 @@ class Presupuesto {
     nuevoGasto(gasto) {
         // console.log(gasto);
         this.gastos = [...this.gastos, gasto];
-        console.log(this.gastos);
+        // console.log(this.gastos);
         // this.calcularRestante();
     }
 
@@ -73,36 +73,36 @@ class UI {
     }
 
     // Inserta los gastos a la lista 
-//     agregarGastoListado(gastos) {
+    agregarGastoListado(gastos) {
 
-//         // Limpiar HTML
-//         this.limpiarHTML();
+        // Limpiar HTML
+        this.limpiarHTML();
 
-//         // Iterar sobre los gastos 
-//         gastos.forEach(gasto => {
-//             const {nombre, cantidad, id } = gasto;
+        // Iterar sobre los gastos para imprimir en el HTML
+        gastos.forEach(gasto => {
+            const {nombre, cantidad, id} = gasto;
 
-//             // Crear un LI
-//             const nuevoGasto = document.createElement('li');
-//             nuevoGasto.className = 'list-group-item d-flex justify-content-between align-items-center';
-//             nuevoGasto.dataset.id = id;
+            // Crear un LI
+            const nuevoGasto      = document.createElement('li');
+            nuevoGasto.className  = 'list-group-item d-flex justify-content-between align-items-center';
+            // nuevoGasto.setAttribute('data-id', id); para un atributo personalizado
+            nuevoGasto.dataset.id = id; // para agregarle el atributo quedaria: data-id - si cambias y pones dataset.fernando lo pondria: data-fernando
 
-//             // Insertar el gasto
-//             nuevoGasto.innerHTML = `
-//                 ${nombre}
-//                 <span class='badge badge-primary badge-pill'>$ ${cantidad}</span>
-//             `;
+            // Insertar el gasto
+            nuevoGasto.innerHTML = `${nombre}
+                <span class='badge badge-primary badge-pill'>$${cantidad}</span>
+            `;
 
-//             // boton borrar gasto.
-//             const btnBorrar = document.createElement('button');
-//             btnBorrar.classList.add('btn', 'btn-danger', 'borrar-gasto');
-//             btnBorrar.textContent = 'Borrar';
-//             nuevoGasto.appendChild(btnBorrar);
+            // boton borrar gasto.
+            const btnBorrar = document.createElement('button');
+            btnBorrar.classList.add('btn', 'btn-danger', 'borrar-gasto');
+            btnBorrar.textContent = 'Borrar';
+            nuevoGasto.appendChild(btnBorrar);
 
-//             // Insertar al HTML
-//             gastosListado.appendChild(nuevoGasto);
-//         });
-//    }
+            // Insertar al HTML
+            gastosListado.appendChild(nuevoGasto);
+        });
+    }
 
      // Comprueba el presupuesto restante
     // actualizarRestante(restante) {
@@ -136,11 +136,11 @@ class UI {
     //     } 
     // }
 
-    // limpiarHTML() {
-    //     while(gastosListado.firstChild) {
-    //         gastosListado.removeChild(gastosListado.firstChild);
-    //     }
-    // }
+    limpiarHTML() {
+        while(gastosListado.firstChild) {
+            gastosListado.removeChild(gastosListado.firstChild);
+        }
+    }
 }
 
 
@@ -199,9 +199,10 @@ function agregarGasto(e) {
     // Insertar en el HTML la alerta de correcto
     ui.imprimirAlerta('Gasto agregado correctamente');
 
-    // // Pasa los gastos para que se impriman
-    // const { gastos } = presupuesto;
-    // ui.agregarGastoListado(gastos);
+    // Pasa los gastos para que se impriman
+    // usamos un destuccion para extraer los gastos 
+    const {gastos} = presupuesto;
+    ui.agregarGastoListado(gastos);
 
     // // Cambiar la clase que nos avisa si se va terminando
     // ui.comprobarPresupuesto(presupuesto);
