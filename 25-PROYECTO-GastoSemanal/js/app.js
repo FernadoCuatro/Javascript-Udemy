@@ -112,32 +112,35 @@ class UI {
         document.querySelector('span#restante').textContent = restante; 
     }
 
-     // Cambia de color el presupuesto restante
-    //  comprobarPresupuesto(presupuestoObj) {
-    //     const { presupuesto, restante} = presupuestoObj;
-    //     const restanteDiv = document.querySelector('.restante');
+    // Cambia de color el presupuesto restante
+    comprobarPresupuesto(presupuestoObj) {
+        const { presupuesto, restante } = presupuestoObj;
+        const restanteDiv = document.querySelector('.restante');
 
-    //     // console.log(restante);
-    //     // console.log( presupuesto);
+        // console.log(restante);
+        // console.log( presupuesto);
 
-    //     // Comprobar el 25% 
-    //     if( (presupuesto / 4) > restante) {
-    //         restanteDiv.classList.remove('alert-success', 'alert-warning');
-    //         restanteDiv.classList.add('alert-danger');
-    //     } else if( (presupuesto / 2) > restante) {
-    //         restanteDiv.classList.remove('alert-success');
-    //         restanteDiv.classList.add('alert-warning');
-    //     } else {
-    //         restanteDiv.classList.remove('alert-danger', 'alert-warning');
-    //         restanteDiv.classList.add('alert-success');
-    //     }
+        // Comprobar el 25% 
+        if ((presupuesto / 4) > restante) {
+            // si ya gastamos mas del 75%
+            restanteDiv.classList.remove('alert-success', 'alert-warning');
+            restanteDiv.classList.add('alert-danger');
+        } else if ((presupuesto / 2) > restante) {
+            // ya gaste mas del 50%
+            restanteDiv.classList.remove('alert-success');
+            restanteDiv.classList.add('alert-warning');
+        } else {
+            // es lo normal
+            restanteDiv.classList.remove('alert-danger', 'alert-warning');
+            restanteDiv.classList.add('alert-success');
+        }
 
-    //     // Si presupuesta es igual a 0 
-    //     if(restante <= 0 ) {
-    //         ui.imprimirAlerta('El presupuesto se ha agotado', 'error');
-    //         formulario.querySelector('button[type='submit']').disabled = true;
-    //     } 
-    // }
+        // Si presupuesta es igual a 0 
+        if (restante <= 0) {
+            ui.imprimirAlerta('El presupuesto se ha agotado', 'error');
+            formulario.querySelector(" button[type='submit'] ").disabled = true;
+        }
+    }
 
     limpiarHTML() {
         while(gastosListado.firstChild) {
@@ -207,8 +210,8 @@ function agregarGasto(e) {
     const {gastos} = presupuesto;
     ui.agregarGastoListado(gastos);
 
-    // // Cambiar la clase que nos avisa si se va terminando
-    // ui.comprobarPresupuesto(presupuesto);
+    // Cambiar la clase que nos avisa si se va terminando
+    ui.comprobarPresupuesto(presupuesto);
 
     // Actualiza el presupuesto restante
     const { restante } = presupuesto;
