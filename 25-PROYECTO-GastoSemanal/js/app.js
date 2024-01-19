@@ -27,10 +27,12 @@ class Presupuesto {
         this.calcularRestante();
     }
 
-    // eliminarGasto(id) {
-    //     this.gastos = this.gastos.filter( gasto => gasto.id.toString() !== id );
-    //     this.calcularRestante();
-    // }
+    eliminarGasto(id) {
+        // iteramos sobre cada gasto y nos treameos todo menos el gatos que estamos seleccionando
+        this.gastos = this.gastos.filter( gasto => gasto.id !== id );
+        // console.log(this.gastos);
+        this.calcularRestante();
+    }
 
     calcularRestante() {
         // reduce toma dos argumentos, el primero es el total luego el objeto 
@@ -76,7 +78,7 @@ class UI {
     }
 
     // Inserta los gastos a la lista 
-    agregarGastoListado(gastos) {
+    mostrarGastoListado(gastos) {
 
         // Limpiar HTML
         this.limpiarHTML();
@@ -99,7 +101,11 @@ class UI {
             // boton borrar gasto.
             const btnBorrar = document.createElement('button');
             btnBorrar.classList.add('btn', 'btn-danger', 'borrar-gasto');
-            btnBorrar.textContent = 'Borrar';
+            btnBorrar.onclick = () => {
+                eliminarGasto(id);
+            }
+            btnBorrar.textContent = 'Borrar x';
+
             nuevoGasto.appendChild(btnBorrar);
 
             // Insertar al HTML
@@ -208,7 +214,7 @@ function agregarGasto(e) {
     // Pasa los gastos para que se impriman
     // usamos un destuccion para extraer los gastos 
     const {gastos} = presupuesto;
-    ui.agregarGastoListado(gastos);
+    ui.mostrarGastoListado(gastos);
 
     // Cambiar la clase que nos avisa si se va terminando
     ui.comprobarPresupuesto(presupuesto);
@@ -221,4 +227,17 @@ function agregarGasto(e) {
 
     // Reiniciar el form
     formulario.reset();
+}
+
+function eliminarGasto(id) {
+    console.log('aqui');
+    presupuesto.eliminarGasto(id);
+
+    // regrescamos el contenido de los gastos
+    // elimina los gastos del HTML
+    const {gastos, restante} = presupuesto;
+
+    ui.mostrarGastoListado(gastos);
+    ui.actualizarRestante(restante);
+    ui.comprobarPresupuesto(presupuesto);
 }
