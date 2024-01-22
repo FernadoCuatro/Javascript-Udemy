@@ -10,6 +10,15 @@ const sintomasInput    = document.querySelector('#sintomas');
 const formulario       = document.querySelector('#nueva-cita');
 const contedorCitas    = document.querySelector('#citas');
 
+// clases
+class Citas {
+
+}
+
+class UI {
+    
+}
+
 // eventos
 eventListeners();
 
