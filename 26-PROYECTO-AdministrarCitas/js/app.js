@@ -22,7 +22,30 @@ class Citas {
 }
 
 class UI {
-    
+    // para mostrar un mensaje, ya sea de error o success
+    imprimirAlerta(mensaje, tipo) {
+        // Crea el div
+        const divMensaje = document.createElement('div');
+        divMensaje.classList.add('text-center', 'alert', 'd-block', 'col-12');
+
+        // Si es de tipo error agrega una clase
+        if (tipo === 'error') {
+            divMensaje.classList.add('alert-danger');
+        } else {
+            divMensaje.classList.add('alert-success');
+        }
+
+        // Mensaje de error
+        divMensaje.textContent = mensaje;
+
+        // Insertar en el DOM
+        document.querySelector('#contenido').insertBefore(divMensaje, document.querySelector('.agregar-cita'));
+
+        // Quitar el alert despues de 3 segundos
+        setTimeout(() => {
+            divMensaje.remove();
+        }, 3000);
+    }
 }
 
 // instancias de las clases
@@ -73,50 +96,50 @@ function nuevaCita(e) {
     // Validamos
     if( mascota === '' || propietario === '' || telefono === '' || fecha === ''  || hora === '' || sintomas === '' ) {
         // console.log('Todos los campos son obligatorios');
-        ui.imprimirAlerta('Todos los mensajes son Obligatorios', 'error')
+        ui.imprimirAlerta('Todos los campos son Obligatorios', 'error')
         return;
     }
 }
 
-function nuevaCita(e) {
+// function nuevaCita(e) {
 
 
     
 
-    // Validar
+//     // Validar
 
 
-    if(editando) {
-        // Estamos editando
-        administrarCitas.editarCita( {...citaObj} );
+//     if(editando) {
+//         // Estamos editando
+//         administrarCitas.editarCita( {...citaObj} );
 
-        ui.imprimirAlerta('Guardado Correctamente');
+//         ui.imprimirAlerta('Guardado Correctamente');
 
-        formulario.querySelector('button[type="submit"]').textContent = 'Crear Cita';
+//         formulario.querySelector('button[type="submit"]').textContent = 'Crear Cita';
 
-        editando = false;
+//         editando = false;
 
-    } else {
-        // Nuevo Registrando
+//     } else {
+//         // Nuevo Registrando
 
-        // Generar un ID único
-        citaObj.id = Date.now();
+//         // Generar un ID único
+//         citaObj.id = Date.now();
         
-        // Añade la nueva cita
-        administrarCitas.agregarCita({...citaObj});
+//         // Añade la nueva cita
+//         administrarCitas.agregarCita({...citaObj});
 
-        // Mostrar mensaje de que todo esta bien...
-        ui.imprimirAlerta('Se agregó correctamente')
-    }
+//         // Mostrar mensaje de que todo esta bien...
+//         ui.imprimirAlerta('Se agregó correctamente')
+//     }
 
 
-    // Imprimir el HTML de citas
-    ui.imprimirCitas(administrarCitas);
+//     // Imprimir el HTML de citas
+//     ui.imprimirCitas(administrarCitas);
 
-    // Reinicia el objeto para evitar futuros problemas de validación
-    reiniciarObjeto();
+//     // Reinicia el objeto para evitar futuros problemas de validación
+//     reiniciarObjeto();
 
-    // Reiniciar Formulario
-    formulario.reset();
+//     // Reiniciar Formulario
+//     formulario.reset();
 
-}
+// }
