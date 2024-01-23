@@ -104,8 +104,6 @@ function nuevaCita(e) {
 
 
 
-
-
 // function nuevaCita(e) {
 
 
