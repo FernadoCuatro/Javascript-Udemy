@@ -12,12 +12,22 @@ const contedorCitas    = document.querySelector('#citas');
 
 // clases
 class Citas {
+    // constructor para inicar el objeto cuando se cree la instancia
+    constructor() {
+        this.citas = []
+    }
+
+
 
 }
 
 class UI {
     
 }
+
+// instancias de las clases
+const UI = new UI();
+const administrarCitas = new Citas();
 
 // eventos
 eventListeners();
@@ -31,6 +41,8 @@ function eventListeners() {
     fechaInput.addEventListener('input', datosCita);
     horaInput.addEventListener('input', datosCita);
     sintomasInput.addEventListener('input', datosCita);
+
+    formulario.addEventListener('submit', nuevaCita);
 }
 
 // un objeto para guardar el textazo del la informacion de la cita
@@ -48,6 +60,63 @@ const citaObj = {
 function datosCita(e) {
     citaObj[e.target.name] = e.target.value;
     // console.log(citaObj);
+}
 
+// Valida ya agrega una nueva cita
+function nuevaCita(e) {
+    // la de siempre 
+    e.preventDefault();
+
+    // Usamos el destruccion y extraemos la informacion
+    const {mascota, propietario, telefono, fecha, hora, sintomas} = citaObj;
+
+    // Validamos
+    if( mascota === '' || propietario === '' || telefono === '' || fecha === ''  || hora === '' || sintomas === '' ) {
+        // console.log('Todos los campos son obligatorios');
+        ui.imprimirAlerta('Todos los mensajes son Obligatorios', 'error')
+        return;
+    }
+}
+
+function nuevaCita(e) {
+
+
+    
+
+    // Validar
+
+
+    if(editando) {
+        // Estamos editando
+        administrarCitas.editarCita( {...citaObj} );
+
+        ui.imprimirAlerta('Guardado Correctamente');
+
+        formulario.querySelector('button[type="submit"]').textContent = 'Crear Cita';
+
+        editando = false;
+
+    } else {
+        // Nuevo Registrando
+
+        // Generar un ID único
+        citaObj.id = Date.now();
+        
+        // Añade la nueva cita
+        administrarCitas.agregarCita({...citaObj});
+
+        // Mostrar mensaje de que todo esta bien...
+        ui.imprimirAlerta('Se agregó correctamente')
+    }
+
+
+    // Imprimir el HTML de citas
+    ui.imprimirCitas(administrarCitas);
+
+    // Reinicia el objeto para evitar futuros problemas de validación
+    reiniciarObjeto();
+
+    // Reiniciar Formulario
+    formulario.reset();
 
 }
