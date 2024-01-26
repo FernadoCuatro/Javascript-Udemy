@@ -17,8 +17,6 @@ class Citas {
         this.citas = []
     }
 
-
-
 }
 
 class UI {
