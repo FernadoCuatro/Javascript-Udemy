@@ -113,11 +113,11 @@ class UI {
             divCita.appendChild(btnEditar)
 
             contenedorCitas.appendChild(divCita);
-        });
+        });ñ
     }
 
     limpiarHTML() {
-        while (contenedorCitas.firstChild) {
+        while ( contenedorCitas.firstChild ) {
             contenedorCitas.removeChild(contenedorCitas.firstChild);
         }
     }
