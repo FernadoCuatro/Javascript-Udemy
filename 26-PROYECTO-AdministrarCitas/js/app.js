@@ -29,10 +29,12 @@ class Citas {
     }
 
     editarCita(citaActualizada) {
+        // el punto map recorre todos los elementos pero crea un nuevo arreglo con los datos validados y asigna los datos
         this.citas = this.citas.map( cita => cita.id === citaActualizada.id ? citaActualizada : cita)
     }
 
     eliminarCita(id) {
+        // filter quita un elemento o mantiene los demas depende de la condicion
         this.citas = this.citas.filter( cita => cita.id !== id ); // nos traemos todas las que sean diferentes a la cita sleccioanda 
     }
 }
