@@ -24,6 +24,10 @@ class Citas {
         this.citas = [...this.citas, cita];
         // console.log(this.citas);
     }
+
+    eliminarCita(id) {
+        this.citas = this.citas.filter( cita => cita.id !== id ); // nos traemos todas las que sean diferentes a la cita sleccioanda 
+    }
 }
 
 class UI {
@@ -89,13 +93,13 @@ class UI {
             const sintomasParrafo = document.createElement('p');
             sintomasParrafo.innerHTML = `<span class="font-weight-bolder">Síntomas: </span> ${sintomas}`;
 
-            // Agregar un botón de eliminar...
+            // Agregar un botón de eliminar
             const btnEliminar = document.createElement('button');
-            btnEliminar.onclick = () => eliminarCita(id); // añade la opción de eliminar
+            btnEliminar.onclick = () => eliminarCita(id); // añade la opción de eliminar con el arrow funcion, funcion de flecha
             btnEliminar.classList.add('btn', 'btn-danger', 'mr-2');
             btnEliminar.innerHTML = 'Eliminar <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>'
 
-            // Añade un botón de editar...
+            // Añade un botón de editar
             const btnEditar = document.createElement('button');
             btnEditar.onclick = () => cargarEdicion(cita);
 
@@ -113,7 +117,7 @@ class UI {
             divCita.appendChild(btnEditar)
 
             contenedorCitas.appendChild(divCita);
-        });ñ
+        });
     }
 
     limpiarHTML() {
@@ -207,3 +211,20 @@ function reiniciarObjeto() {
     citaObj.hora        = '';
     citaObj.sintomas    = '';
 }
+
+// funcion para eliminar el enfermito
+function eliminarCita(id) {
+    // eliminar la cita
+    administrarCitas.eliminarCita(id);
+
+    // muestra un mensaje
+    ui.imprimirAlerta('La cita se elimino correctamente');
+
+    // refresque lo que son las cita
+    ui.imprimirCitas(administrarCitas);
+}
+
+
+
+
+
