@@ -13,7 +13,6 @@ carrito.add('Disco #3');
 carrito.add('Disco #3');
 console.log(carrito.size); // cuantos elementos tenemos
 
-
 // En un arreglo
 // let numeros = new Set([1,2,3,4,5,6,7,3,3,3,3]);
 // console.log(numeros.size);
