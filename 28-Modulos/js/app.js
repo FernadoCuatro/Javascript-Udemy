@@ -5,8 +5,11 @@
 // })();
 
 //import te permite traerlo a este aechivo 
-import { nombreCliente, ahorro, mostrarInformacion, tieneSaldo, Cliente } from "./cliente.js";
+import nuevaFuncion, { nombreCliente, ahorro, mostrarInformacion, tieneSaldo, Cliente } from "./cliente.js";
 import { Empresa } from "./empresa.js";
+
+// El default 
+nuevaFuncion()
 
 // Variables 
 console.log(nombreCliente);
@@ -24,3 +27,4 @@ console.log(cliente);
 // Es decir la clase desde otro archivo
 const empresa = new Empresa( 'FernandoEmpresa', 100, 'Aprendamos' );
 console.log( empresa.mostrarInformacion() );
+

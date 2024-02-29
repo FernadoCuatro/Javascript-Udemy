@@ -28,3 +28,15 @@ export class Cliente {
         return `Cliente: ${this.nombre} - Ahorro: ${this.ahorro}`;
     }
 }
+
+
+// Cada archivo puede tener múltiples exports, pero solo un export default, este export default puede tener un nombre o no
+// en el archivo de apps.js este deault no tiene que estar en la llave
+// Y solamente puedes tener un export default
+// export default function nuevaFuncion() {
+//     console.log('Función por default')
+// }
+
+export default function () {
+    console.log('Función por default')
+}
