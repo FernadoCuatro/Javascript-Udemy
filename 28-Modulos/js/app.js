@@ -6,6 +6,7 @@
 
 //import te permite traerlo a este aechivo 
 import { nombreCliente, ahorro, mostrarInformacion, tieneSaldo, Cliente } from "./cliente.js";
+import { Empresa } from "./empresa.js";
 
 // Variables 
 console.log(nombreCliente);
@@ -19,3 +20,7 @@ tieneSaldo( ahorro )
 const cliente = new Cliente( nombreCliente, ahorro );
 console.log(cliente);
 
+// Importamos la clase de empresa
+// Es decir la clase desde otro archivo
+const empresa = new Empresa( 'FernandoEmpresa', 100, 'Aprendamos' );
+console.log( empresa.mostrarInformacion() );
