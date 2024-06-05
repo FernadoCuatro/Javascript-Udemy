@@ -19,7 +19,6 @@ const heading = document.querySelector('#administra');
 
 let editando = false;
 
-
 // Eventos
 eventListeners();
 function eventListeners() {
@@ -106,7 +105,6 @@ function reiniciarObjeto() {
     citaObj.hora = '';
     citaObj.sintomas = '';
 }
-
 
 function eliminarCita(id) {
     administrarCitas.eliminarCita(id);
