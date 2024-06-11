@@ -1,10 +1,10 @@
 
-const mascotaInput = document.querySelector('#mascota');
+const mascotaInput     = document.querySelector('#mascota');
 const propietarioInput = document.querySelector('#propietario');
-const telefonoInput = document.querySelector('#telefono');
-const fechaInput = document.querySelector('#fecha');
-const horaInput = document.querySelector('#hora');
-const sintomasInput = document.querySelector('#sintomas');
+const telefonoInput    = document.querySelector('#telefono');
+const fechaInput       = document.querySelector('#fecha');
+const horaInput        = document.querySelector('#hora');
+const sintomasInput    = document.querySelector('#sintomas');
 
 // Contenedor para las citas
 const contenedorCitas = document.querySelector('#citas');
@@ -15,7 +15,6 @@ formulario.addEventListener('submit', nuevaCita);
 
 // Heading
 const heading = document.querySelector('#administra');
-
 
 let editando = false;
 
@@ -38,7 +37,6 @@ const citaObj = {
     hora:'',
     sintomas: ''
 }
-
 
 function datosCita(e) {
     //  console.log(e.target.name) // Obtener el Input
@@ -136,5 +134,4 @@ function cargarEdicion(cita) {
     formulario.querySelector('button[type="submit"]').textContent = 'Guardar Cambios';
 
     editando = true;
-
 }
