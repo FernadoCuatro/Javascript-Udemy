@@ -68,7 +68,6 @@ function nuevaCita(e) {
         formulario.querySelector('button[type="submit"]').textContent = 'Crear Cita';
 
         editando = false;
-
     } else {
         // Nuevo Registrando
 
@@ -81,7 +80,6 @@ function nuevaCita(e) {
         // Mostrar mensaje de que todo esta bien...
         ui.imprimirAlerta('Se agregó correctamente')
     }
-
 
     // Imprimir el HTML de citas
     ui.imprimirCitas(administrarCitas);
