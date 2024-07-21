@@ -15,4 +15,5 @@ class Citas {
     }
 }
 
+// Para exportarlo y utilizarlo
 export default Citas;

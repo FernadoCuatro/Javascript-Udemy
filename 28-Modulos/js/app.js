@@ -27,4 +27,3 @@ console.log(cliente);
 // Es decir la clase desde otro archivo
 const empresa = new Empresa( 'FernandoEmpresa', 100, 'Aprendamos' );
 console.log( empresa.mostrarInformacion() );
-

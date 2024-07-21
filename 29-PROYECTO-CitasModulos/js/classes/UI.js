@@ -102,4 +102,5 @@ class UI {
     }
 }
 
+// Para hacerlo disponible para el uso
 export default UI;

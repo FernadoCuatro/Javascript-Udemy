@@ -1,19 +1,10 @@
-// Evento al boton
-formulario.addEventListener('submit', nuevaCita);
+// Instancias
+const administrarCitas = new Citas();
+console.log(administrarCitas);
+const ui = new UI(administrarCitas);
 
 // Estado por defecto
 let editando = false;
-
-// Eventos
-eventListeners();
-function eventListeners() {
-    mascotaInput.addEventListener('change', datosCita);
-    propietarioInput.addEventListener('change', datosCita);
-    telefonoInput.addEventListener('change', datosCita);
-    fechaInput.addEventListener('change', datosCita);
-    horaInput.addEventListener('change', datosCita);
-    sintomasInput.addEventListener('change', datosCita);
-}
 
 const citaObj = {
     mascota: '',
@@ -24,16 +15,12 @@ const citaObj = {
     sintomas: ''
 }
 
-function datosCita(e) {
+export function datosCita(e) {
     //  console.log(e.target.name) // Obtener el Input
      citaObj[e.target.name] = e.target.value;
 }
 
-const administrarCitas = new Citas();
-console.log(administrarCitas);
-const ui = new UI(administrarCitas);
-
-function nuevaCita(e) {
+export function nuevaCita(e) {
     e.preventDefault();
 
     const {mascota, propietario, telefono, fecha, hora, sintomas } = citaObj;
@@ -78,7 +65,7 @@ function nuevaCita(e) {
 
 }
 
-function reiniciarObjeto() {
+export function reiniciarObjeto() {
     // Reiniciar el objeto
     citaObj.mascota = '';
     citaObj.propietario = '';
@@ -88,13 +75,13 @@ function reiniciarObjeto() {
     citaObj.sintomas = '';
 }
 
-function eliminarCita(id) {
+export function eliminarCita(id) {
     administrarCitas.eliminarCita(id);
 
     ui.imprimirCitas(administrarCitas)
 }
 
-function cargarEdicion(cita) {
+export function cargarEdicion(cita) {
 
     const {mascota, propietario, telefono, fecha, hora, sintomas, id } = cita;
 
