@@ -1,3 +1,9 @@
+// Importamos funciones, es decir el archivo
+import { eliminarCita, cargarEdicion } from '../funciones.js'; 
+
+// Ahora importamos los selectores
+import { contenedorCitas, heading } from '../selectores.js';
+
 class UI {
     constructor({ citas }) {
         this.textoHeading(citas);

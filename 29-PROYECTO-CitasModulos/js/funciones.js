@@ -1,3 +1,10 @@
+// Importamos las clases
+import Citas from './classes/Citas.js';
+import ui from './classes/UI.js';
+
+// Selectores
+import { mascotaInput, propietarioInput, telefonoInput, fechaInput, horaInput, sintomasInput, formulario } from './selectores.js'; 
+
 // Instancias
 const administrarCitas = new Citas();
 console.log(administrarCitas);
