@@ -22,8 +22,4 @@ function crmDB() {
     crmDB.onupgradeneeded = function() {
         // Aqui se definen las columnas que puede tener la base de datos 
     }
-
-
-
-
 }
