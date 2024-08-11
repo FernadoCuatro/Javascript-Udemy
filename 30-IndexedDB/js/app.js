@@ -19,7 +19,28 @@ function crmDB() {
     }
 
     // Configuracion de la base de datos
-    crmDB.onupgradeneeded = function() {
-        // Aqui se definen las columnas que puede tener la base de datos 
+    // Se ejecuta una vez cuando se crea la base de datos 
+    // Automaticamente pasa el evento
+    crmDB.onupgradeneeded = function(e) {
+        // Aqui se definen las columnas que puede tener la base de datos
+        // console.log(e.target.result);
+        const db = e.target.result;
+
+        // Definimos el objectStore
+        // Con un objeto de configuracion
+        const objectStore = db.createObjectStore('crm' ,{
+            keyPath: 'crm',
+            autoIncrement: true
+        });
+
+        // Es un CRM es como un administrador de clientes
+        // Definimos las columnas
+        // Lo segundo es el keyPath es como, lo vas a llamar para consultarla data
+        objectStore.createIndex('nombre', 'nombre', { unique: false } );
+        objectStore.createIndex('email', 'email', { unique: true } );
+        objectStore.createIndex('telefono', 'telefono', { unique: false } );
+
+        console.log('Columnas Creadas');
+        
     }
 }
