@@ -27,7 +27,7 @@ function crmDB() {
 
     // Si se creo bien
     crmDB.onsuccess = function() {
-        console.log('Se creo correctaemente');
+        console.log('Se creo correctamente');
 
         // Asignamos a la variable global
         DB = crmDB.result;
@@ -73,7 +73,7 @@ function crearCliente() {
     }
 
     transaction.onerror =  function() {
-        console.log('Ocurrio un error en la transacción');
+        console.log('Ocurrió un error en la transacción');
     }
     // Lo de arriba es el camino para usar las transacciones
 
